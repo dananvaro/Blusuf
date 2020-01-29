@@ -15,7 +15,7 @@ public class Klient {
 
             PrintWriter ut = new PrintWriter(socket.getOutputStream());
 
-            
+            k
             innput = new InputStreamReader(socket.getInputStream());
             BufferedReader inn = new BufferedReader(innput);
         } catch (IOException e) {
