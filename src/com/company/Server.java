@@ -6,12 +6,15 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+
+
 public class Server {
 
     ServerSocket server;
     Socket serversocket;
     PrintWriter ut;
     DataInputStream inn;
+    int tall = 0;
 
 
     public Server(int portnummer) {
@@ -28,10 +31,11 @@ public class Server {
             try {
                 //når en klient kjører så aksepterer serveren tilkoplingen
 
-
-                Multi multi = new Multi(server.accept());
-
-                System.out.println("Maaaa");
+               serversocket = server.accept();
+                System.out.println("klient nummer "+tall++);
+               Multi trad = new Multi(serversocket);
+               trad.start();
+               System.out.println("Maaaa");
 
 
             } catch (IOException e) {
