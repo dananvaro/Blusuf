@@ -18,30 +18,21 @@ public class Server {
         System.out.println("Velkommen til Serveren o2");
 
         try {
-            //Lager en server med gitt portnummer
             server = new ServerSocket(portnummer);
         } catch (IOException e) {
+            //Lager en server med gitt portnummer
             e.printStackTrace();
         }
 
         while(true) {
             try {
                 //når en klient kjører så aksepterer serveren tilkoplingen
-                serversocket = server.accept();
-                ut = new PrintWriter(serversocket.getOutputStream(), true);
-                inn = new DataInputStream(serversocket.getInputStream());
 
 
-                String hentInnput = inn.readLine();
-                while (hentInnput != null) {
-                    ut.println(hentInnput.toUpperCase());
-                    hentInnput = inn.readLine();
-                    System.out.println(hentInnput);
+                Multi multi = new Multi(server.accept());
 
-                }
+                System.out.println("Maaaa");
 
-                System.out.println("linje 40");
-                //serversocket.shutdownInput();
 
             } catch (IOException e) {
                 e.printStackTrace();
