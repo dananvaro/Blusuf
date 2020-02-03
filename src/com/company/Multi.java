@@ -15,6 +15,7 @@ public class Multi extends Thread {
     public Multi(Socket nysocket){
 
         this.nysocket = nysocket;
+        //
 
     }
 
