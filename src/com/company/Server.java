@@ -12,7 +12,6 @@ public class Server {
     Socket serversocket;
     PrintWriter ut;
     DataInputStream inn;
-    DataInputStream stopp;
 
 
     public Server(int portnummer) {
@@ -21,25 +20,32 @@ public class Server {
         try {
             //Lager en server med gitt portnummer
             server = new ServerSocket(portnummer);
-            //når en klient kjører så aksepterer serveren tilkoplingen
-            serversocket = server.accept();
-            ut = new PrintWriter(serversocket.getOutputStream(), true);
-            inn = new DataInputStream(serversocket.getInputStream());
-
-
-            String hentInnput = inn.readLine();
-            while (hentInnput!=null) {
-                ut.println(hentInnput.toUpperCase());
-                hentInnput = inn.readLine();
-                System.out.println(hentInnput);
-
-            }
-
-            System.out.println("linje 40");
-           // serversocket.shutdownInput();
-
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        while(true) {
+            try {
+                //når en klient kjører så aksepterer serveren tilkoplingen
+                serversocket = server.accept();
+                ut = new PrintWriter(serversocket.getOutputStream(), true);
+                inn = new DataInputStream(serversocket.getInputStream());
+
+
+                String hentInnput = inn.readLine();
+                while (hentInnput != null) {
+                    ut.println(hentInnput.toUpperCase());
+                    hentInnput = inn.readLine();
+                    System.out.println(hentInnput);
+
+                }
+
+                System.out.println("linje 40");
+                //serversocket.shutdownInput();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }

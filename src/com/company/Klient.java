@@ -40,7 +40,7 @@ public class Klient {
                 innput = in.readLine();
             }
             socket.shutdownOutput();
-            socket.shutdownInput();
+            //socket.shutdownInput();
 
         } catch (IOException e) {
             e.printStackTrace();
