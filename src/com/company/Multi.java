@@ -10,12 +10,12 @@ public class Multi extends Thread {
     Socket nysocket;
     PrintWriter ut;
     DataInputStream inn;
+    DataInputStream stoppServer;
 
 
     public Multi(Socket nysocket){
 
         this.nysocket = nysocket;
-        //
 
     }
 
@@ -28,16 +28,14 @@ public class Multi extends Thread {
             inn = new DataInputStream(nysocket.getInputStream());
 
 
-        String hentInnput = inn.readLine();
-        while (hentInnput != null) {
-            ut.println(hentInnput.toUpperCase());
-            hentInnput = inn.readLine();
-            System.out.println(hentInnput);
+            String hentInnput = inn.readLine();
+            while (hentInnput != null ) {
+                ut.println((AlleEmails.Alleemail(hentInnput)));
+                hentInnput = inn.readLine();
 
         }
 
         //nysocket.shutdownOutput();
-        System.out.println("linje 40");
         //serversocket.shutdownInput();
     } catch (IOException e) {
         e.printStackTrace();

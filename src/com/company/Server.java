@@ -31,11 +31,11 @@ public class Server {
             try {
                 //når en klient kjører så aksepterer serveren tilkoplingen
 
-               serversocket = server.accept();
+                serversocket = server.accept();
                 System.out.println("klient nummer "+tall++);
-               Multi trad = new Multi(serversocket);
-               trad.start();
-               System.out.println("Maaaa");
+                Multi trad = new Multi(serversocket);
+                trad.start();
+                System.out.println("Maaaa");
 
 
             } catch (IOException e) {

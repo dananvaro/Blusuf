@@ -35,7 +35,8 @@ public class Klient {
                 utput.println(innput);
                 //henter Stringen fra serveren
                  meld = ut.readLine();
-                System.out.println(meld);
+                 //dekoder koden vi får fra serveren
+                System.out.println(Dekode_email.dekodeemail(meld));
                 //ny innput
                 innput = in.readLine();
             }
