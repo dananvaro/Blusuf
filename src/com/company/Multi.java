@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class Multi extends Thread {
+public class Multi implements Runnable {
 
     Socket nysocket;
     PrintWriter ut;

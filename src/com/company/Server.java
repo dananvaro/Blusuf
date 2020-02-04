@@ -34,7 +34,7 @@ public class Server {
                 serversocket = server.accept();
                 System.out.println("klient nummer "+tall++);
                 Multi trad = new Multi(serversocket);
-                trad.start();
+                new Thread(trad).start();
                 System.out.println("Maaaa");
 
 
