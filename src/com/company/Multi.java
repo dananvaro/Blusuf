@@ -1,15 +1,14 @@
 package com.company;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 public class Multi implements Runnable {
 
     Socket nysocket;
     PrintWriter ut;
-    DataInputStream inn;
+    //DataInputStream inn;
+    BufferedReader inn;
     DataInputStream stoppServer;
 
 
@@ -25,7 +24,8 @@ public class Multi implements Runnable {
         try {
             ut = new PrintWriter(nysocket.getOutputStream(), true);
 
-            inn = new DataInputStream(nysocket.getInputStream());
+            inn = new BufferedReader(new InputStreamReader(nysocket.getInputStream()));
+            //inn = new DataInputStream(nysocket.getInputStream());
 
 
             String hentInnput = inn.readLine();

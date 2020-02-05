@@ -2,6 +2,7 @@ package com.company;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -14,8 +15,19 @@ public class Server {
     Socket serversocket;
     PrintWriter ut;
     DataInputStream inn;
-    int tall = 0;
+    int tall = 1;
 
+    public void lukkKobling() {
+
+        System.out.println("Koblingen lukkes");
+        try{
+            serversocket.close();
+
+        } catch (IOException e){
+
+        }
+
+    }
 
     public Server(int portnummer) {
         System.out.println("Velkommen til Serveren o2");
@@ -29,13 +41,12 @@ public class Server {
 
         while(true) {
             try {
-                //når en klient kjører så aksepterer serveren tilkoplingen
 
+                //når en klient kjører så aksepterer serveren tilkoplingen
                 serversocket = server.accept();
                 System.out.println("klient nummer "+tall++);
                 Multi trad = new Multi(serversocket);
                 new Thread(trad).start();
-                System.out.println("Maaaa");
 
 
             } catch (IOException e) {

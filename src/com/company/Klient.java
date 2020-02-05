@@ -6,8 +6,8 @@ public class Klient {
     //initerer
     private Socket socket;
     private PrintWriter utput;
-    private DataInputStream in;
-    private DataInputStream ut;
+    private BufferedReader in = null;
+    private BufferedReader ut = null;
 
     public Klient(String adresse, int portnummer) {
 
@@ -16,10 +16,10 @@ public class Klient {
             socket = new Socket(adresse,portnummer);
 
             //Denne skal hente inn verdi/string
-            in = (new DataInputStream (System.in));
+            in = new BufferedReader(new InputStreamReader (System.in));
 
             //Hent string fra Serveren
-            ut = new DataInputStream(socket.getInputStream());
+            ut  = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             //brukes for å sende til server
             utput = new PrintWriter(socket.getOutputStream(), true);
@@ -40,6 +40,7 @@ public class Klient {
                 //ny innput
                 innput = in.readLine();
             }
+
             socket.shutdownOutput();
             //socket.shutdownInput();
 
