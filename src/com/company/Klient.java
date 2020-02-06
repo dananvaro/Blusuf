@@ -25,12 +25,12 @@ public class Klient {
             utput = new PrintWriter(socket.getOutputStream(), true);
 
 
-            System.out.println("har havner her");
+            System.out.println("Velkommen til E-mail søkeren");
             //initialiserer meld
             String meld;
             //henter innput fra bruker
             String innput = in.readLine();
-            while (!innput.equals("H")) {
+            while (!innput.equalsIgnoreCase("Takk")) {
                 //sender innputen til serveren
                 utput.println(innput);
                 //henter Stringen fra serveren
@@ -42,13 +42,14 @@ public class Klient {
             }
 
             socket.shutdownOutput();
+            socket.close();
             //socket.shutdownInput();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
         finally {
-            System.out.println("Klienten har ikke en connetion lenger");
+            System.out.println("Klenten har stoppet koplingen med serveren");
         }
 
     }

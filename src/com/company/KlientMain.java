@@ -1,8 +1,8 @@
 package com.company;
 
-public class Main {
+public class KlientMain {
     public static void main(String[] args) {
         // write your code here
-        Klient k = new Klient("10.13.8.146",1999);
+        Klient k = new Klient("127.0.0.1",1999);
     }
 }

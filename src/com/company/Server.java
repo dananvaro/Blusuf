@@ -13,24 +13,24 @@ public class Server {
 
     ServerSocket server;
     Socket serversocket;
-    PrintWriter ut;
     DataInputStream inn;
-    int tall = 1;
 
+/**
     public void lukkKobling() {
-
         System.out.println("Koblingen lukkes");
         try{
-            serversocket.close();
+            server.
 
         } catch (IOException e){
 
         }
 
     }
+ */
+
 
     public Server(int portnummer) {
-        System.out.println("Velkommen til Serveren o2");
+        System.out.println("Velkommen til E-Mail -Serveren");
 
         try {
             server = new ServerSocket(portnummer);
@@ -44,9 +44,10 @@ public class Server {
 
                 //når en klient kjører så aksepterer serveren tilkoplingen
                 serversocket = server.accept();
-                System.out.println("klient nummer "+tall++);
+                System.out.println("Sender en velkommen mld til "+ serversocket.getLocalAddress());
                 Multi trad = new Multi(serversocket);
                 new Thread(trad).start();
+
 
 
             } catch (IOException e) {

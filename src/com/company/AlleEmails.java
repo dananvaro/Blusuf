@@ -13,15 +13,16 @@ public class AlleEmails {
         try {
             URL net = new URL(nettadresse);
             BufferedReader url = new BufferedReader(new InputStreamReader(net.openStream()));
-            System.out.println("jeg er jo her");
 
             StringBuilder returner = new StringBuilder();
             returner.append("0");
-            String line;
-            while ((line = url.readLine()) != null) {
-                Matcher m = Pattern.compile("[a-åA-Å0-9_.+-]+@[a-ÅA-Å0-9-]+\\.[a-åA-Å0-9-.]+").matcher(line);
+            String tekstIURL;
+            //https://no.godaddy.com/email/professional-business-email
+            //den emailen har 4 mails. kan ikke kjør modulus2 siden en av disse fjernes
+            while ((tekstIURL = url.readLine()) != null) {
+                Matcher m = Pattern.compile("[a-åA-Å0-9_.+-]+@[a-ÅA-Å0-9-]+\\.[a-åA-Å0-9-.]+").matcher(tekstIURL);
                 while (m.find() == true) {
-                    returner.append(m.group() + "\n");
+                    returner.append(m.group() + " ");
                 }
             }
             if(returner.toString().equals("0")){

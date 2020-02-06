@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Multi implements Runnable {
@@ -9,7 +10,6 @@ public class Multi implements Runnable {
     PrintWriter ut;
     //DataInputStream inn;
     BufferedReader inn;
-    DataInputStream stoppServer;
 
 
     public Multi(Socket nysocket){
@@ -29,8 +29,9 @@ public class Multi implements Runnable {
 
 
             String hentInnput = inn.readLine();
-            while (hentInnput != null ) {
-                ut.println((AlleEmails.Alleemail(hentInnput)));
+            while (true) {
+                String melding = (AlleEmails.Alleemail(hentInnput));
+                ut.println(melding);
                 hentInnput = inn.readLine();
 
         }
@@ -38,7 +39,8 @@ public class Multi implements Runnable {
         //nysocket.shutdownOutput();
         //serversocket.shutdownInput();
     } catch (IOException e) {
-        e.printStackTrace();
+
+            e.getMessage();
     }
 
     }
