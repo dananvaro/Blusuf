@@ -20,9 +20,10 @@ public class AlleEmails {
             //https://no.godaddy.com/email/professional-business-email
             //den emailen har 4 mails. kan ikke kjør modulus2 siden en av disse fjernes
             while ((tekstIURL = url.readLine()) != null) {
-                Matcher m = Pattern.compile("[a-åA-Å0-9_.+-]+@[a-ÅA-Å0-9-]+\\.[a-åA-Å0-9-.]+").matcher(tekstIURL);
-                while (m.find() == true) {
-                    returner.append(m.group() + " ");
+                Pattern email = Pattern.compile("[a-åA-Å0-9_.+-]+@[a-ÅA-Å0-9-]+\\.[a-åA-Å0-9-.]+");
+                Matcher emailfinner = email.matcher(tekstIURL);
+                while (emailfinner.find() == true) {
+                    returner.append(emailfinner.group() + " ");
                 }
             }
             if(returner.toString().equals("0")){
