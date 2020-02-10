@@ -4,7 +4,7 @@ import java.net.Socket;
 import java.net.SocketException;
 
 public class Klient {
-    //initerer
+    //initerer variablene
     private Socket socket;
     private PrintWriter utput;
     private BufferedReader in = null;
