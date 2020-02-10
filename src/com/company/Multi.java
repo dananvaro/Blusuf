@@ -13,24 +13,29 @@ public class Multi implements Runnable {
 
 
     public Multi(Socket nysocket){
-
         this.nysocket = nysocket;
-
     }
 
     @Override
     public void run() {
 
         try {
+            //printer de vi skriver som så sendes tilbake til klient
             ut = new PrintWriter(nysocket.getOutputStream(), true);
 
+            //tar inn innput
             inn = new BufferedReader(new InputStreamReader(nysocket.getInputStream()));
             //inn = new DataInputStream(nysocket.getInputStream());
 
 
             String hentInnput = inn.readLine();
-            while (true) {
-                String melding = (AlleEmails.Alleemail(hentInnput));
+            String melding;
+            while (hentInnput!=null) {
+                if (hentInnput.equalsIgnoreCase("stopp server")){
+                    ut.println("server har stoppa");
+                    System.exit(0);
+                }
+                melding = (AlleEmails.Alleemail(hentInnput));
                 ut.println(melding);
                 hentInnput = inn.readLine();
 

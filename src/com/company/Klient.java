@@ -1,6 +1,7 @@
 package com.company;
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class Klient {
     //initerer
@@ -16,7 +17,7 @@ public class Klient {
             socket = new Socket(adresse,portnummer);
 
             //Denne skal hente inn verdi/string
-            in = new BufferedReader(new InputStreamReader (System.in));
+            in = new BufferedReader(new InputStreamReader(System.in));
 
             //Hent string fra Serveren
             ut  = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -30,7 +31,7 @@ public class Klient {
             String meld;
             //henter innput fra bruker
             String innput = in.readLine();
-            while (!innput.equalsIgnoreCase("Takk")) {
+            while (!innput.equalsIgnoreCase("Takk") && !innput.equalsIgnoreCase("stopp server")){
                 //sender innputen til serveren
                 utput.println(innput);
                 //henter Stringen fra serveren
@@ -40,15 +41,20 @@ public class Klient {
                 //ny innput
                 innput = in.readLine();
             }
+            if (innput.equalsIgnoreCase("stopp server")){ utput.println(innput);  socket.close();}
+            if (innput.equalsIgnoreCase("takk")) utput.println(innput);
 
             socket.shutdownOutput();
             socket.close();
+
             //socket.shutdownInput();
 
+        } catch (SocketException e){
+            System.out.println("Serveren er lukket og dermed lukkes koplingen");
+            System.exit(0);
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             System.out.println("Klenten har stoppet koplingen med serveren");
         }
 

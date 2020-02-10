@@ -33,6 +33,7 @@ public class Server {
         System.out.println("Velkommen til E-Mail -Serveren");
 
         try {
+            //åpner en server med gittt portnummer
             server = new ServerSocket(portnummer);
         } catch (IOException e) {
             //Lager en server med gitt portnummer
@@ -47,7 +48,6 @@ public class Server {
                 System.out.println("Sender en velkommen mld til "+ serversocket.getLocalAddress());
                 Multi trad = new Multi(serversocket);
                 new Thread(trad).start();
-
 
 
             } catch (IOException e) {
