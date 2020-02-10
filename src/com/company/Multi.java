@@ -32,7 +32,7 @@ public class Multi implements Runnable {
             String melding;
             while (hentInnput != null) {
                 if (hentInnput.equalsIgnoreCase("stopp server")) {
-                    System.out.print("Passord : ");
+                    System.out.print("Passord :");
                     passord();
                 }
                 melding = (AlleEmails.Alleemail(hentInnput));
