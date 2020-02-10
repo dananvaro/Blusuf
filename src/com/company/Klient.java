@@ -31,7 +31,8 @@ public class Klient {
             String meld;
             //henter innput fra bruker
             String innput = in.readLine();
-            while (!innput.equalsIgnoreCase("Takk") && !innput.equalsIgnoreCase("stopp server")){
+            while (!innput.equalsIgnoreCase("Avslutt")
+                    && !innput.equalsIgnoreCase("Stopp server")){
                 //sender innputen til serveren
                 utput.println(innput);
                 //henter Stringen fra serveren
@@ -41,9 +42,9 @@ public class Klient {
                 //ny innput
                 innput = in.readLine();
             }
-            if (innput.equalsIgnoreCase("stopp server")){
+            if (innput.equalsIgnoreCase("Stopp server")){
                 utput.println(innput);  socket.close();}
-            if (innput.equalsIgnoreCase("takk")) utput.println(innput);
+            if (innput.equalsIgnoreCase("Avslutt")) utput.println(innput);
 
             socket.shutdownOutput();
             socket.close();

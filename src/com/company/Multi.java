@@ -31,8 +31,7 @@ public class Multi implements Runnable {
             String hentInnput = inn.readLine();
             String melding;
             while (hentInnput != null) {
-                if (hentInnput.equalsIgnoreCase("stopp server")) {
-                    System.out.print("Passord :");
+                if (hentInnput.equalsIgnoreCase("Stopp server")) {
                     passord();
                 }
                 melding = (AlleEmails.Alleemail(hentInnput));
@@ -54,14 +53,17 @@ public class Multi implements Runnable {
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         String passord = null;
         try {
+            System.out.print("Passord : ");
             passord = in.readLine();
-            if (passord.equals("danan")) {
-                ut.println("server har stoppa");
+            if (passord.equals("Admin1234")) {
+                ut.println("Serveren har stoppa ;)");
                 System.exit(0);
             }else {
-                System.out.println("Vil du prøve igjen : Ja / Nei");
+
+                System.out.println("Feil passord \n" + "Vil du prøve igjen : Ja / Nei");
                 passord = in.readLine();
                 if(passord.equalsIgnoreCase("ja")) passord();
+
             }
         } catch (IOException e) {
             e.printStackTrace();
