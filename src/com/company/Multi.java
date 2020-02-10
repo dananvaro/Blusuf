@@ -12,7 +12,7 @@ public class Multi implements Runnable {
     BufferedReader inn;
 
 
-    public Multi(Socket nysocket){
+    public Multi(Socket nysocket) {
         this.nysocket = nysocket;
     }
 
@@ -30,23 +30,41 @@ public class Multi implements Runnable {
 
             String hentInnput = inn.readLine();
             String melding;
-            while (hentInnput!=null) {
-                if (hentInnput.equalsIgnoreCase("stopp server")){
-                    ut.println("server har stoppa");
-                    System.exit(0);
+            while (hentInnput != null) {
+                if (hentInnput.equalsIgnoreCase("stopp server")) {
+                    System.out.print("Passord : ");
+                    passord();
                 }
                 melding = (AlleEmails.Alleemail(hentInnput));
                 ut.println(melding);
                 hentInnput = inn.readLine();
 
-        }
+            }
 
-        //nysocket.shutdownOutput();
-        //serversocket.shutdownInput();
-    } catch (IOException e) {
+            //nysocket.shutdownOutput();
+            //serversocket.shutdownInput();
+        } catch (IOException e) {
 
             e.getMessage();
+        }
+
     }
 
+    public void passord() {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        String passord = null;
+        try {
+            passord = in.readLine();
+            if (passord.equals("danan")) {
+                ut.println("server har stoppa");
+                System.exit(0);
+            }else {
+                System.out.println("Vil du prøve igjen : Ja / Nei");
+                passord = in.readLine();
+                if(passord.equalsIgnoreCase("ja")) passord();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

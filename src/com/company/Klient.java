@@ -41,7 +41,8 @@ public class Klient {
                 //ny innput
                 innput = in.readLine();
             }
-            if (innput.equalsIgnoreCase("stopp server")){ utput.println(innput);  socket.close();}
+            if (innput.equalsIgnoreCase("stopp server")){
+                utput.println(innput);  socket.close();}
             if (innput.equalsIgnoreCase("takk")) utput.println(innput);
 
             socket.shutdownOutput();
